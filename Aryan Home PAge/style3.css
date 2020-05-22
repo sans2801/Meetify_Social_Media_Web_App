@@ -1,0 +1,169 @@
+
+
+/************************************************************************************************/
+body{
+	margin:0;
+	padding: 0;
+  background-color: #1bcdd7;
+
+}
+
+
+
+.midsection{
+
+  background-image: url(https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+  background-position: 50% 50%;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-size: 100%;
+
+}
+
+.mid2{
+
+  background-image: url(https://images.pexels.com/photos/551588/pexels-photo-551588.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+height:100%;
+
+}
+.mid3{
+
+  background-image: url(https://images.pexels.com/photos/327540/pexels-photo-327540.jpeg?auto=compress&cs=tinysrgb&dpr=2);
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+height:100%;
+}
+.mid4{
+
+  background-image: url(https://images.pexels.com/photos/5842/people-vintage-photo-memories.jpg?auto=compress&cs=tinysrgb&dpr=2);
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+height:100%;
+}
+.mid5{
+
+  background-image: url(https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+height:100%;
+}
+
+
+section.midsection p{
+	margin:0;
+  padding:20%;
+	font-family: 'Dancing Script', cursive;
+	font-size:220%;
+	color: white;
+	text-align: center;
+}
+p{	font-family: 'Dancing Script', cursive;
+	font-size:220%;
+	color: white;
+	text-align: center;}
+section.midsection h1{
+display:inline;
+
+}
+section.midsection .quote{
+position:relative;
+
+}
+section.midsection .quote1{
+position:absolute;
+left:40%;
+top:20%;
+}
+
+body,html{
+  margin:0px;
+  padding:0px;
+  overflow-x:hidden;
+  width:100%;
+  height:100%;
+}
+.ram iframe{padding:5%;margin-left:20%;border-radius:50%;}
+.card-img-top{border-radius: 0%;}
+img{max-width:100%;height:auto;height:300px;width:450px;}
+@media(max-width: 480px) {
+  section.midsection .quote1{
+  position:absolute;
+  left:20%;
+  top:4%;
+  }
+  .col-lg-4{margin-top:40px;}
+}
+@media(max-width: 707px) and (min-width:480px) {
+  section.midsection .quote1{
+  position:absolute;
+  left:30%;
+  top:3%;
+  }
+
+}
+
+.card{padding:10%;background-image:url("https://us.123rf.com/450wm/geotzi/geotzi1911/geotzi191100052/134914005-blue-metallic-background-backdrop-texture-for-design.jpg?ver=6"); 	background-repeat: repeat;
+	background-size: contain;border-radius:25%;margin-left: :5%;}
+
+.ppl{margin-left:80px;color:white;font-family:fantasy;margin-top:0px;position:absolute;top:0;}
+img{border-radius:50%;height:auto;max-width:100%;}
+.carousel-item img{border-radius:0%;height:auto;max-width:80%;}
+.carousel-item{width:80%;margin:50px 20%;}
+.foot{background-color:black;padding:1%;}
+section.hi .container {
+  position: relative;
+  width: 70%;
+  margin:10px 15%;
+  overflow: hidden;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
+
+.responsive-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 50%;
+}
+.card-title{color:white;}
+hr{width:30%;height:0px;border-style:none;border-top-style: dotted;border-color:white;border-width:20px;}
+h5{font-family: 'Oswald', sans-serif;}
+.two{
+
+    height: 500px;
+}
+.one{
+    height: 100%;
+}
+.col-lg-4 {
+  padding-bottom:5%;
+}
+.carousel { overflow: hidden; }
+#carouselExampleControls{overflow: hidden;}
+.carousel-item { overflow: hidden; }
+.carousel-inner{overflow: hidden;margin:0px;padding:0px;}
+.one{margin:0px;padding:0px;width:100%;}
+.two{margin:0px;padding:0px;width:100%;}
+#carouselExampleControls {
+	height:100%;
+}
+#carouselExampleControls .carousel-inner{
+	height:100%;
+}
+#carouselExampleControls .carousel-item{
+	background-repeat:no-repeat;
+	background-size:cover;
+	background-position:center center;
+	width:100%;
+	height:100%;
+}
