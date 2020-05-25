@@ -11,6 +11,11 @@ body{
 
 iframe{border-radius:0% !important;}
 
+[data-theme="dark"] {
+  background-color: #111 !important;
+  color: #eee;
+}
+
 
 
 .mid2{

@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html >
+  <head lang="en">
     <meta charset="utf-8">
-
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="HandheldFriendly" content="true">
@@ -13,8 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Fondamento&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
     <link href="{{ url_for('static', filename='homepage.css') }}" rel="stylesheet" type="text/css">
@@ -23,7 +20,7 @@
   <body style="width:100%;">
    
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <img src="{{ url_for('static',filename='Untitled.jpg') }}" style="height:50px ;width:50px;border-radius:0%;font-family: 'Pacifico', cursive;">
+      <img src="{{ url_for('static', filename='images/logo.jpg') }}" style="height:50px ;width:50px;border-radius:0%;font-family: 'Pacifico', cursive;">
       <a class="navbar-brand" href="#" style="font-family: 'Pacifico', cursive;"> MEETIFY</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -42,7 +39,11 @@
               FEATURES
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Dark Mode</a>
+              <span class="dropdown-item" href="#">Dark Mode<div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="darkSwitch">
+                <label class="custom-control-label" for="darkSwitch"></label>
+              </div>
+              <script src="dark-mode-switch.js"></script></span>
               <a class="dropdown-item" href="#">Join Group</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Create Group</a>
@@ -57,7 +58,18 @@
       </div>
     </nav>
 
-
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    
+    
+    
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -69,22 +81,22 @@
       </ol>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img class="d-block w-100" src="{{ url_for('static', filename='friends silhouette.jpg') }}" alt="First slide">
+          <img class="d-block w-100" src="{{ url_for('static', filename='images/friendssilhouette.jpg') }}" alt="First slide">
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="{{ url_for('static',filename= 'lonely and sad edit.jpg') }}" alt="Second slide">
+          <img class="d-block w-100" src="{{ url_for('static',filename= 'images/lonelyandsadedit.jpg') }}" alt="Second slide">
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="{{ url_for('static', filename='handfinaledit.jpg') }}" alt="Third slide">
+          <img class="d-block w-100" src="{{ url_for('static', filename='images/handfinaledit.jpg') }}" alt="Third slide">
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="{{ url_for('static', filename='memories.jpg') }}" alt="Third slide">
+          <img class="d-block w-100" src="{{ url_for('static', filename='images/memories.jpg') }}" alt="Third slide">
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="{{url_for('static',filename='grow.jpg')}}" alt="Third slide">
+          <img class="d-block w-100" src="{{url_for('static',filename='images/grow.jpg')}}" alt="Third slide">
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="{{url_for('static',filename='Untitled.jpg')}}" alt="Third slide">
+          <img class="d-block w-100" src="{{url_for('static',filename='images/Untitled.jpg')}}" alt="Third slide">
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -118,23 +130,23 @@
       </ol>
       <div class="carousel-inner">
         <div class="carousel-item active" data-interval="5000">
-          <img class="d-block w-100" src="{{url_for('static',filename='4k-wallpaper-arm-art-artistic-1152188.jpg')}}" alt="First slide" >
+          <img class="d-block w-100" src="{{url_for('static',filename='images/4k-wallpaper-arm-art-artistic-1152188.jpg')}}" alt="First slide" >
         </div>
         <div class="carousel-item" data-interval="5000">
-          <img class="d-block w-100" src="{{url_for('static',filename='pexels-photo-937481.jpg')}}" alt="Second slide">
+          <img class="d-block w-100" src="{{url_for('static',filename='images/pexels-photo-937481.jpg')}}" alt="Second slide">
         </div>
         <div class="carousel-item" data-interval="5000">
-          <img class="d-block w-100" src="{{url_for('static',filename='pexels-photo-2790438.jpg')}}" alt="Third slide">
+          <img class="d-block w-100" src="{{url_for('static',filename='images/pexels-photo-2790438.jpg')}}" alt="Third slide">
         </div>
         <div class="carousel-item" data-interval="5000">
-          <img class="d-block w-100" src="{{url_for('static',filename='pexels-photo-3601184.jpg')}}" alt="Fourth slide">
+          <img class="d-block w-100" src="{{url_for('static',filename='images/pexels-photo-3601184.jpg')}}" alt="Fourth slide">
         </div>
 
         <div class="carousel-item" data-interval="5000">
-          <img class="d-block w-100" src="{{url_for('static',filename='pexels-photo-3861961.jpg')}}" alt="Fifth slide">
+          <img class="d-block w-100" src="{{url_for('static',filename='images/pexels-photo-3861961.jpg')}}" alt="Fifth slide">
         </div>
         <div class="carousel-item" data-interval="5000">
-          <img class="d-block w-100" src="{{url_for('static',filename='pexels-photo-3921379.jpg')}}" alt="Sixth slide">
+          <img class="d-block w-100" src="{{url_for('static',filename='images/pexels-photo-3921379.jpg')}}" alt="Sixth slide">
         </div>
 
       </div>
@@ -142,9 +154,10 @@
     <div class="foot">
       <p>The Fantastic Four&#169;</p>
     </div>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <!-- <script src="{{ url_for('static', filename='homepage.js') }}"></script> -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="{{ url_for('static', filename='homepage.js') }}"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
   </body>
 </html>

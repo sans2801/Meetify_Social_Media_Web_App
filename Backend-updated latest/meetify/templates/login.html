@@ -43,7 +43,7 @@
                             {{ form.password.label(class="label-input100") }}
 
                         {% if form.password.errors %}
-                            {{ form.password(class="input100 is-invalid", placeholder="Type your password", autocomplete="off") }}
+                            {{ form.password(class="input100 form-control form-control-lg is-invalid", placeholder="Type your password", autocomplete="off") }}
                             <div class="invalid-feedback">
                                 {% for error in form.password.errors %}
                                     <span>{{ error }}</span>
