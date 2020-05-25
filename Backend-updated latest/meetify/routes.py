@@ -2,16 +2,17 @@ from flask import render_template, url_for, flash, redirect
 from meetify import app,db,bcrypt
 from meetify.forms import RegistrationForm, LoginForm
 from meetify.models import User
-from flask_login import login_user
+from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route('/')
+@app.route('/home')
 def home():
-	return 'Home page'
+	return render_template('HomePage.html')
 
 
 
 @app.route('/login',methods=['GET','POST'])
-def login():
+def login():    
 	form = LoginForm()
 	if form.validate_on_submit():
 		user=User.query.filter_by(email=form.email.data).first()
@@ -24,6 +25,10 @@ def login():
 		return render_template('login.html', form =form)
 
 
+@app.route('/account')
+def account():
+    image_file=url_for('static',filename='default.png')
+    return render_template('account.html')
 
 
 @app.route('/signup',methods=['GET','POST'])
@@ -36,9 +41,11 @@ def signup():
 		db.session.add(user1)
 		db.session.commit()
 		flash(f'Account created for {form.username.data}!', 'success')
-		return redirect(url_for('login'))
+		return redirect(url_for('home'))
+	else:
+		flash('Please check email and password')
 	return render_template('signup.html', form= form)
 
-@app.route('/forgot_password',methods=['GET','POST'])
+@app.route('/forgot_password')
 def forgot_password():
-	return render_template('forgot_password.html')
+    return render_template('forgot_password.html')
