@@ -29,10 +29,10 @@
                         Sign Up
                     </span>
                     <div class="wrap-input100 validate-input">
-                        {{ form.username.label(class="label-input100") }}
+                        {{ form.username.label(class="label-input100 form-control-label") }}
 
                         {% if form.username.errors %}
-                            {{ form.username(class="input100 is-invalid", placeholder="Type your username") }}
+                            {{ form.username(class="input100 is-invalid form-control form-control-lg", placeholder="Type your username", autocomplete="off") }}
                             <div class="invalid-feedback">
                                 {% for error in form.username.errors %}
                                     <span>{{ error }}</span>
@@ -40,16 +40,16 @@
                             </div>
 
                         {% else %}
-                            {{ form.username(class="input100", placeholder="Type your username") }}
+                            {{ form.username(class="input100 form-control form-control-lg", placeholder="Type your username", autocomplete="off") }}
                         {% endif %}
                     </div>
 
                     <div class="wrap-input100 validate-input">
-                        {{ form.email.label(class="label-input100") }}
+                        {{ form.email.label(class="label-input100 form-control-label") }}
 
 
                         {% if form.email.errors %}
-                            {{ form.email(class="input100 is-invalid", placeholder="Type your email") }}
+                            {{ form.email(class="input100 is-invalid form-control form-control-lg", placeholder="Type your email", autocomplete="off") }}
                             <div class="invalid-feedback">
                                 {% for error in form.email.errors %}
                                     <span> {{ error }} </span>
@@ -57,17 +57,17 @@
                             </div>
 
                         {% else %}
-                            {{ form.email(class="input100", placeholder="Type your email") }}
+                            {{ form.email(class="input100 form-control form-control-lg", placeholder="Type your email", autocomplete="off") }}
                         {% endif %}                    
                     </div>
 
                     
 
                     <div class="wrap-input100 validate-input">
-                        {{ form.password.label(class="label-input100") }}
+                        {{ form.password.label(class="label-input100 form-control-label") }}
 
                         {% if form.password.errors %}
-                            {{ form.password(class="input100 is-invalid", placeholder="Type your password") }}
+                            {{ form.password(class="input100 is-invalid form-control form-control-lg", placeholder="Type your password", autocomplete="off") }}
                             <div class="invalid-feedback">
                                 {% for error in form.password.errors %}
                                     <span>{{ error }}</span>
@@ -75,14 +75,14 @@
                             </div>
 
                         {% else %}
-                            {{ form.password(class="input100", placeholder="Type your password") }}
+                            {{ form.password(class="input100 form-control form-control-lg", placeholder="Type your password", autocomplete="off") }}
                         {% endif %}
                     </div>
 
                     <div class="wrap-input101 validate-input">
-                        {{ form.confirm_password.label(class="label-input100") }}
+                        {{ form.confirm_password.label(class="label-input100 form-control-label") }}
                         {% if form.confirm_password.errors %}
-                            {{ form.confirm_password(class="input100 is-invalid", placeholder="Type your password") }}
+                            {{ form.confirm_password(class="input100 is-invalid form-control form-control-lg", placeholder="Type your password", autocomplete="off") }}
                             <div class="invalid-feedback">
                                 {% for error in form.confirm_password.errors %}
                                     <span>{{ error }}</span>
@@ -90,7 +90,7 @@
                             </div>
 
                         {% else %}
-                            {{ form.confirm_password(class="input100", placeholder="Type your password") }}
+                            {{ form.confirm_password(class="input100 form-control form-control-lg", placeholder="Type your password", autocomplete="off") }}
                         {% endif %}
                     </div>
 

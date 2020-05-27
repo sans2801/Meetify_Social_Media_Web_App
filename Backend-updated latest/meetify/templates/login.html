@@ -17,6 +17,7 @@
         <div class="main">
             <div class="login" style="background-color: #1bcdd7">
                 <div class="wrap-login100">
+                    
                     <form class="login-form" method="POST">
                         {{ form.hidden_tag() }}
                         <span class="login-form-title">
@@ -27,20 +28,20 @@
 
 
                         {% if form.email.errors %}
-                            {{ form.email(class="input100 is-invalid", placeholder="Type your email", autocomplete="off") }}
-                            <div class="invalid-feedback">
+                            {{ form.email(class="input100 is-invalid form-control form-control-lg", placeholder="Type your email", autocomplete="off") }}
+                            <div class="invalid-feedback flash">
                                 {% for error in form.email.errors %}
                                     <span> {{ error }} </span>
                                 {% endfor %}
                             </div>
 
                         {% else %}
-                            {{ form.email(class="input100", placeholder="Type your email", autocomplete="off") }}
+                            {{ form.email(class="input100 form-control form-control-lg", placeholder="Type your email", autocomplete="off") }}
                         {% endif %}  
                         </div>
 
                         <div class="wrap-input101 validate-input">
-                            {{ form.password.label(class="label-input100") }}
+                            {{ form.password.label(class="label-input100 form-control-label") }}
 
                         {% if form.password.errors %}
                             {{ form.password(class="input100 form-control form-control-lg is-invalid", placeholder="Type your password", autocomplete="off") }}
@@ -51,7 +52,7 @@
                             </div>
 
                         {% else %}
-                            {{ form.password(class="input100", placeholder="Type your password", autocomplete="off") }}
+                            {{ form.password(class="input100 form-control-lg form-control", placeholder="Type your password", autocomplete="off") }}
                         {% endif %}
                         </div>
 
@@ -60,6 +61,16 @@
                                 Forgot password?
                             </a>
                         </div>
+
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    <div class="alert alert-{{ category }} flash">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
 
                         <div class="container-login-form-btn">
                             <div class="wrap-login100-form-btn">
