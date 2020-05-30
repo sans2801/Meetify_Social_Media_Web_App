@@ -1,0 +1,32 @@
+body{background-color: #1bcdd7;}
+p{font-family: 'Balsamiq Sans', cursive;font-size: 150%;margin:50px;color:#0d3b4c}
+img {max-width:100%;height:auto;}
+.card{margin:50px;border-radius:12%;}
+@media(max-width:480px)
+{
+  p{
+    font-size:75%;
+    margin:20px;
+  }
+  .card{margin:5px;height:auto;max-width:100;width:60%!important;}
+}
+@media(min-width:1000px)
+{
+  img{
+     width:100%;
+  }
+}
+@media(max-width:300px)
+{
+.card{width:70%;}
+}
+.foot{position:relative;background-color:black;padding:1%;top:0px;}
+.foot p{text-align: center;}
+body,html{
+  margin:0px;
+  padding:0px;
+  overflow-x:hidden;
+  width:100%;
+  height:100%;
+}
+.card-body{padding:5%;}
