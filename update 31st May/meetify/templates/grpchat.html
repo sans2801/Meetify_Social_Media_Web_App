@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Group Chat</title>
+
+	<style type="text/css">
+		
+		#main-section{
+			display: flex;
+		}
+
+		#rightside-panel{
+			display: flex;
+			flex-direction: column;
+			margin-top: 40px;
+		}
+
+		nav#sidebar{
+			margin-right:40px ; 
+		}
+
+	</style>
+
+
+
+</head>
+<body>
+
+	<nav>
+		
+	</nav>
+
+	<div id="main-section">
+
+		<nav id="sidebar">
+			<h4>Enter Group ID</h4>
+			<input type="text" id="room-id-input" placeholder="room id..." autocomplete="off">
+			<button type="button" id="room-id-submit">Submit</button>
+			
+		</nav>
+
+		<div id="rightside-panel">
+			
+			<div id="display-message">
+				
+			</div>
+
+			<div id="input-area">
+				<input type="text" id="user_message" placeholder="message..." autocomplete="off">
+
+				<button type="button" id="send_message">Send</button>
+			</div>
+
+		</div>
+		
+	</div>
+
+<script id="some_id" type="text/javascript">
+	
+	const username=`{{ username }}`
+
+</script>
+
+
+<!-------SocketIO JS-------->
+<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+<!------------Custon SocketIO JS------------>
+
+<script type="text/javascript" charset="utf-8">
+
+    document.addEventListener('DOMContentLoaded',()=>{
+
+	var socket=io();
+
+	let room;
+
+	socket.on('message',data=>{
+
+		const p=document.createElement('p');
+		const span_username=document.createElement('span');
+		const span_time=document.createElement('small');
+		const br=document.createElement('br');
+		span_username.innerHTML=data['username'];
+		span_time.innerHTML=data['time_stamp']
+		p.innerHTML= span_time.outerHTML+ br.outerHTML + span_username.outerHTML+ ':' + br.outerHTML + data['msg'];
+		document.querySelector('#display-message').append(p);
+
+	});
+
+	socket.on('joining_event',data=>{
+
+		const p=document.createElement('p');
+		const span_username=document.createElement('span');
+		p.innerHTML=data['msg'];
+		document.querySelector('#display-message').append(p);
+
+	});
+
+
+	socket.on('leaving_event',data=>{
+		const p=document.createElement('p');
+		p.innerHTML=data['msg'];
+		document.querySelector('#display-message').append(p);
+
+	});
+
+	//Sends message on clicking
+
+	document.querySelector('#send_message').onclick=()=>{
+
+		if(document.querySelector('#user_message').value=='')
+		{
+			alert('Please type a message');
+		}
+
+		else
+		{
+		socket.send({'msg':document.querySelector('#user_message').value,'username':username,'room':room});
+		document.querySelector('#user_message').value='';
+	}
+	}
+
+	document.querySelector('#room-id-submit').onclick=()=>{
+
+		
+			let newRoom=document.querySelector('#room-id-input').value;
+			if(newRoom==room){
+				msg=`you are already in ${room}.`
+				alert(msg);
+			}
+			else{
+				leaveRoom(room);
+				joinRoom(newRoom);
+				room=newRoom;
+			}
+
+		
+	};
+
+	//leave room func
+	function leaveRoom(room){
+		socket.emit('leave',{'username':username, 'room':room})
+	}
+
+	//join room func
+	function joinRoom(room){
+		socket.emit('join',{'username':username, 'room':room})
+		//clear chats of prev room
+		document.querySelector('#display-message').innerHTML='';
+	}
+
+})
+
+
+
+</script>
+</body>
+</html>
