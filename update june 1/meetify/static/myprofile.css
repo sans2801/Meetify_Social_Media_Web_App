@@ -1,0 +1,50 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+}
+.heading{
+    text-align: center;
+    margin-top: 2rem;
+}
+.profile{
+    
+    display: grid;
+    grid-template-areas:
+                        "profile-pic username"
+                        "profile-pic password";
+    margin: 3rem;
+    box-shadow: 0px 0px 9px 4px rgba(122,117,122,1);
+    background-color: #ADD8E6;
+}
+.details{
+    padding: 3rem;
+}
+.details > h2{
+    margin-bottom: 2rem;
+}
+.profile-pic{
+    grid-area:profile-pic;
+}
+.username{
+    grid-area:username;
+}
+.password{
+    grid-area:password;
+}
+.detail_change{
+    margin: 2rem;
+}
+
+@media screen and (max-width: 768px){
+    .profile{
+    grid-template-areas:
+        "profile-pic"
+        "username"
+        "password";
+}
+    body{
+        text-align: center;
+    }
+}

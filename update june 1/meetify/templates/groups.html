@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Groups</title>
+</head>
+<body>
+
+<ul>
+
+	{% if rooms %}
+
+	{% for room in rooms %}
+
+		<li class="select_group_name"><a href="chat_page/{{ room._id.room_id }}">{{ room.room_name }}</a></li>
+
+	{% endfor %}
+
+	{% endif %}
+
+	{% if not rooms %}
+
+	<p>You are not in any group</p>
+
+	{% endif %}
+
+	
+
+</ul>
+
+<p>
+	Join More Groups?
+	<a href="{{ url_for('join_groups') }}">click here</a>
+</p>
+
+
+<p>
+	Create Groups?
+	<a href="{{ url_for('create_room') }}">click here</a>
+</p>
+
+
+</body>
+
+
+
+
+</html>
