@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Create Group</title>
+</head>
+<body>
+	<h1>Create Groups</h1>
+	<h3>
+		
+		{% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    
+
+	</h3>
+	<form method="post">
+		<label>
+			Group Name:
+		</label>
+		<input type="text" name="room_name">
+		<br>
+		<label>Members</label>
+
+		<input type="text" name="members">
+
+		<br>
+		<button type="submit">Submit</button>
+
+		
+	</form>
+</body>
+</html>
