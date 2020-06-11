@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ room['room name'] }} chatroom</title>
+
+	<style type="text/css">
+
+	</style>
+
+
+
+</head>
+<body>
+
+	<nav>
+		
+	</nav>
+
+	<div id="main-section">
+	<h1><a href="/grp_page/{{ room['_id'] }}">{{ room['room name'] }}</a></h1>
+
+		<div id="rightside-panel">
+			
+			<div id="display-message">
+
+				{% for message in messages %}
+
+				<p>
+					<span class="db_time">{{ message['created_at'] }}</span>
+					<br>
+					<span class="db_username">{{ message['sender'] }}:</span>
+					<br>
+					{{ message['text'] }}
+				</p>
+
+				{% endfor %}
+				
+			</div>
+
+			<div id="input-area">
+				<input type="text" id="user_message" placeholder="message..." autocomplete="off">
+
+				<button type="button" id="send_message">Send</button>
+			</div>
+
+		</div>
+		
+	</div>
+	</body>
+
+<!-------SocketIO JS-------->
+<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+<!------------Custon SocketIO JS------------>
+
+
+<script id="some_id" type="text/javascript">
+
+	var socket=io();
+
+	//leave room func
+	function leaveRoom(room){
+		socket.emit('leave',{'username':username, 'room':room})
+	}
+
+	//join room func
+	function joinRoom(room){
+		socket.emit('join',{'username':username, 'room':room})
+	}
+	
+	let username=`{{ username }}`;
+	let room_id=`{{ room['_id'] }}`;
+
+	console.log(room_id);
+	let room;
+
+	let newRoom=room_id;
+			if(newRoom==room){
+				msg=`you are already in ${room}.`
+				alert(msg);
+			}
+			else{
+				leaveRoom(room);
+				joinRoom(newRoom);
+				room=newRoom;
+			}
+
+
+
+
+</script>
+
+<script type="text/javascript" charset="utf-8">
+
+    document.addEventListener('DOMContentLoaded',()=>{
+	
+
+	socket.on('message',data=>{
+
+		const p=document.createElement('p');
+		const span_username=document.createElement('span');
+		const span_time=document.createElement('small');
+		const br=document.createElement('br');
+		span_username.innerHTML=data['username'];
+		span_time.innerHTML=data['time_stamp']
+		p.innerHTML= span_time.outerHTML+ br.outerHTML + span_username.outerHTML+ ':' + br.outerHTML + data['msg'];
+		document.querySelector('#display-message').append(p);
+
+	});
+
+	socket.on('joining_event',data=>{
+
+		const p=document.createElement('p');
+		const span_username=document.createElement('span');
+		p.innerHTML=data['msg'];
+		document.querySelector('#display-message').append(p);
+
+	});
+
+
+	socket.on('leaving_event',data=>{
+		const p=document.createElement('p');
+		p.innerHTML=data['msg'];
+		document.querySelector('#display-message').append(p);
+
+	});
+
+	//Sends message on clicking
+
+	document.querySelector('#send_message').onclick=()=>{
+
+		if(document.querySelector('#user_message').value=='')
+		{
+			alert('Please type a message');
+		}
+
+		else
+		{
+		socket.send({'msg':document.querySelector('#user_message').value,'username':username,'room':room});
+		document.querySelector('#user_message').value='';
+	}
+	}
+
+
+	
+
+})
+
+
+
+</script>
+
+</html>

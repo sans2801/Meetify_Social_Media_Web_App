@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Join Groups!!</title>
+</head>
+<body>
+
+
+	{% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    
+    <form method="post">
+    <input type="text" name="grp_name" placeholder="Group name or tags...">
+	<input type="submit">
+	</form>
+
+	<div>
+		<ul>
+		{% if rooms %}
+			<h2>Search Result</h2>
+		
+		{% for room in rooms %}
+
+				
+				<li><a href="/grp_page/{{ room['_id'] }}">{{ room['room name'] }}</a><br>
+				Created By: {{ room['created by'] }}<br>
+				Group Interests: {{ room['tags'] }}<br>
+				Status: {{ room['status'] }}
+				{% if room['status']=='Open' %}
+					<br>
+					<a href="/join_group/{{ room['_id'] }}">Join</a>
+
+
+				{% endif %}
+				<br><br>
+				</li>
+			
+
+		{% endfor %}
+		{% endif %}
+		</ul>
+
+		<div class="recommended"></div>
+
+		<h2>Recommended</h2>
+
+		{% if recommended_rooms %}
+		{% for room in recommended_rooms %}
+
+			
+				<li><a href="/grp_page/{{ room['_id'] }}">{{ room['room name'] }}</a><br>
+				Created By: {{ room['created by'] }}<br>
+				Group Interests: {{ room['tags'] }}<br>
+				Status: {{ room['status'] }}
+				{% if room['status']=='Open' %}
+					<br>
+					<a href="/join_group/{{ room['_id'] }}">Join</button>
+
+
+				{% endif %}
+				<br>
+				</li>
+			
+
+		{% endfor %}
+		{% else %}
+		<h3>No groups correspond to your interests</h3>
+		{% endif %}
+
+	</div>
+
+
+</body>
+</html>

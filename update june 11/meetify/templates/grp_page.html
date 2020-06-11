@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ room['room name'] }}</title>
+</head>
+<body>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    <div class="alert alert-{{ category }} flash">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+    {% endwith %}
+
+
+<!--------                 Room Info                            -------->
+	
+
+	<img src="{{ room['profile_pic'] }}">
+
+	<br>
+	{{ room }}
+	<br><br>
+	Members:
+	<br>
+	{% if members %}
+	<ul>
+	{% for member in members %}
+		<li>{{ member }}</li>
+	{% endfor %}
+
+	</ul>
+	{% endif %}
+
+	{% if not members %}
+	None
+	{% endif %}
+	<br>
+
+<!-----------------------Admin Exclusive--------------------------------------->
+	{% if isAdmin %}
+	<form method="post">
+	<label>Add Participant</label>
+	<input type="text" name="add_member" placeholder="Participant...">
+	<button type="submit">Add</button>
+	</form>
+
+	<form method="post">
+	<label>Remove Participant</label>
+	<input type="text" name="remove_member" placeholder="Participant...">
+	<button type="submit">Remove</button>
+	</form>
+
+	{% endif %}
+
+
+<!----------------------MEMBER EXCLUSIVE---------------------------------------->
+	{% if isMember %}
+	<a href="/grp_page/leave/{{ current_user.username }}/{{ room._id }}">Leave Group</a>	
+	{% endif %}
+
+
+</body>
+</html>
