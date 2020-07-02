@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <title>Meet & Quiz</title>
+    <style>
+      body{
+    font-size: 20px;
+    font-family: monospace;
+}
+*{
+  font-family: 'Poppins', sans-serif;
+  color:#0492C2;
+
+}
+
+#container{
+  margin:20px auto;
+  background-color:white;
+  height:300px;
+  width:700px;
+  border-radius: 5px;
+    box-shadow: 0px 5px 15px 0px;
+    position: relative;
+}
+#start{
+    font-size: 1.5em;
+    font-weight: bolder;
+    word-break: break-all;
+    width:100px;
+    height:150px;
+    border : 2px solid lightgrey;
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+    left:300px;
+    top:50px;
+    color : lightgrey;
+}
+#start:hover{
+    border: 3px solid lightseagreen;
+    color : lightseagreen;
+}
+
+#qImg{
+    width : 200px;
+    height : 200px;
+    position: absolute;
+    left : 0px;
+    top : 0px;
+}
+#qImg img{
+    width : 200px;
+    height : 200px;
+    border-top-left-radius: 5px;
+}
+
+#question{
+    width:500px;
+    height : 125px;
+    position: absolute;
+    right:0;
+    top:0;
+}
+#question p{
+    margin : 0;
+    padding : 15px;
+    font-size: 1.25em;
+}
+
+#choices{
+    width : 480px;
+    position: absolute;
+    right : 0;
+    top : 125px;
+    padding : 10px
+}
+.choice{
+    display: inline-block;
+    width : 135px;
+    text-align: center;
+    border : 1px solid grey;
+    border-radius: 5px;
+    cursor: pointer;
+    padding : 5px;
+}
+.choice:hover{
+    border : 2px solid grey;
+    font-weight: bold;
+}
+
+#timer{
+    position: absolute;
+    height : 100px;
+    width : 200px;
+    bottom : 0px;
+    text-align: center;
+}
+#counter{
+    font-size: 3em;
+}
+#btimeGauge{
+    width : 150px;
+    height : 10px;
+    border-radius: 10px;
+    background-color: lightgray;
+    margin-left : 25px;
+}
+#timeGauge{
+    height : 10px;
+    border-radius: 10px;
+    background-color: mediumseagreen;
+    margin-top : -10px;
+    margin-left : 25px;
+}
+#progress{
+    width : 500px;
+    position: absolute;
+    bottom : 0px;
+    right : 0px;
+    padding:5px;
+    text-align: right;
+}
+.prog{
+    width : 25px;
+    height : 25px;
+    border: 1px solid #000;
+    display: inline-block;
+    border-radius: 50%;
+    margin-left : 5px;
+    margin-right : 5px;
+}
+#scoreContainer{
+    margin : 20px auto;
+    background-color: white;
+    opacity: 0.8;
+    height: 300px;
+    width : 700px;
+    border-radius: 5px;
+    box-shadow: 0px 5px 15px 0px;
+    position: relative;
+    display: none;
+}
+#scoreContainer img{
+    position: absolute;
+    top:100px;
+    left:325px;
+}
+#scoreContainer p{
+    position: absolute;
+    display: block;
+    width : 59px;
+    height :59px;
+    top:130px;
+    left:325px;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+h1{
+  text-align:center;
+  color:#0492C2;
+}
+#msg{
+  text-align:center;
+  color:#0492C2;
+}
+.img{
+  text-align: center;
+  margin-bottom: 50px;
+  margin-top:50px;
+}
+body{
+  height:100%;
+}
+
+
+      </style>
+  </head>
+  <body>
+    <h1>Meet & Quiz</h1></div>
+    <p id="msg">Welcome to Meet & Quiz!!! The Meetify king has been cursed by Anti Meetify <br> Witch to turn into a commoner!!!This curse can be lifted only if a wise <br>Meetifier will answer 10 mind boggling questions on the king's behalf!!!The King believes <br>in you and has chosen you for the same.Please Help the King  return to his <br>grandeur by answering the Questions correctly!!!Long Live the Meetify King and the prophecised Meetifier!!!! </p>
+  <div class="img">
+    <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/emojidex/112/man_1f468.png" id='master'></div>
+    <div id="container">
+          <div id="start">Start Quiz!</div>
+          <div id="quiz" style="display: none">
+              <div id="question"></div>
+              <div id="qImg"></div>
+              <div id="choices">
+                  <div class="choice" id="A" onclick="checkAnswer('A')"></div>
+                  <div class="choice" id="B" onclick="checkAnswer('B')"></div>
+                  <div class="choice" id="C" onclick="checkAnswer('C')"></div>
+              </div>
+              <div id="timer">
+                  <div id="counter"></div>
+                  <div id="btimeGauge"></div>
+                  <div id="timeGauge"></div>
+              </div>
+              <div id="progress"></div>
+          </div>
+          <div id="scoreContainer" style="display: none"></div>
+      </div>
+     <script>
+       const start = document.getElementById("start");
+const quiz = document.getElementById("quiz");
+const question = document.getElementById("question");
+const qImg = document.getElementById("qImg");
+const choiceA = document.getElementById("A");
+const choiceB = document.getElementById("B");
+const choiceC = document.getElementById("C");
+const counter = document.getElementById("counter");
+const timeGauge = document.getElementById("timeGauge");
+const progress = document.getElementById("progress");
+const scoreDiv = document.getElementById("scoreContainer");
+let questions = [
+    {
+        question : "What is the national animal of Bhutan?",
+        imgSrc : "https://media2.trover.com/T/594cc7ece398907cb6000294/fixedw_large_4x.jpg",
+        choiceA : "Takin",
+        choiceB : "Yak",
+        choiceC : "Dragon",
+        correct : "A"
+    },{
+        question : "Who is the Prime Minister of Israel?",
+        imgSrc : "https://mfa.gov.il/MFA/AboutIsrael/State/Personalities/Photos/gpo-ao-netanyahu-head.jpg",
+        choiceA : "Ariel Sharon",
+        choiceB : "Benjamin Netanyahu",
+        choiceC : "Ehud Olmert",
+        correct : "B"
+    },{
+        question : "Who introduced python to the world?",
+        imgSrc : "https://cms.qz.com/wp-content/uploads/2019/05/Guido-van-Rossum-e1558635088256.jpg?quality=75&strip=all&w=900&h=900&crop=1",
+        choiceA : "Guido van Rossum",
+        choiceB : "James Gosling",
+        choiceC : "Tim Berners Lee",
+        correct : "A"
+    },
+    {
+        question : "Who is the current secretary general of UN? ",
+        imgSrc : "https://www.un.org/sg/sites/www.un.org.sg/files/NICA-768874-Guterres.jpg",
+        choiceA : "Ban Ki Moon",
+        choiceB : "Fillipo Grandy",
+        choiceC : "Antonio Guterres",
+        correct : "C"
+    },
+    {
+        question : "Who is the Prime Minister of France?",
+        imgSrc : "https://img.etimg.com/thumb/width-640,height-480,imgsize-335026,resizemode-1,msid-71770233/french-president-announces-3-pronged-security-partnership-with-india-for-southern-indian-ocean.jpg",
+        choiceA : "Francos Hollande",
+        choiceB : "Emmanuel Macron",
+        choiceC : "Nicolas Sarkozy",
+        correct : "B"
+    },
+    
+    {
+        question : "Who has designed the world's smallest satellite?",
+        imgSrc : "https://ilmfeed.com/wp-content/uploads/2019/02/rifath.jpg",
+        choiceA : "Rajakonda Subramaniam",
+        choiceB : "Subramaniam Iyer",
+        choiceC : "Rifath Sharook",
+        correct : "C"
+    },
+    {
+        question : "Who's picture is this?",
+        imgSrc : "https://thumbor.forbes.com/thumbor/fit-in/416x416/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F5de5598eea103f000653e41f%2F0x0.jpg%3Fbackground%3D000000%26cropX1%3D675%26cropX2%3D4518%26cropY1%3D0%26cropY2%3D3840",
+        choiceA : "Marine La Pen",
+        choiceB : "Angela Merkel",
+        choiceC : "Jacinda Arden",
+        correct : "B"
+    },
+    {
+        question : "Who is the CEO of IBM?",
+        imgSrc : "https://pbs.twimg.com/profile_images/1247016785108447234/LEPENTy__400x400.jpg",
+        choiceA : "Arvind Krishna",
+        choiceB : "Jes Staley",
+        choiceC : "Arvind Kaushal",
+        correct : "A"
+    },
+    {
+        question : "Which country is the world's happiest country?",
+        imgSrc : "https://cdn.shopify.com/s/files/1/0018/9225/3766/articles/made-in-finland-sustainable-finnish-sports-and-outdoor-brands-366794_960x.jpg?v=1575942600",
+        choiceA : "Bhutan",
+        choiceB : "Finland",
+        choiceC : "Denmark",
+        correct : "B"
+    },
+    {
+        question : "Which country has the highest Per Capita Income?",
+        imgSrc : "https://www.headmedical.com/Content/HeadMedical/assets/img/locations/Qatar.jpg",
+        choiceA : "Luxemborg",
+        choiceB : "Norway",
+        choiceC : "Qatar",
+        correct : "A"
+    },
+    {
+        question : "Who wrote the book : Anna Karenina?",
+        imgSrc : "https://imgr.cineserie.com/2012/12/385230.jpg?imgeng=/f_jpg/cmpr_0/w_2000/h_3000/m_cropbox&ver=1",
+        choiceA : "Arundathi Roy",
+        choiceB : "Jane Austen",
+        choiceC : "Leo Tolstoy",
+        correct : "C"
+    }
+];
+
+
+var superhero=new Audio('../static/despacito.mp3')
+var witch= new Audio("http://xoomer.virgilio.it/oteroweb/pages/media/wave/risate/cackle03.wav")
+
+const lastQuestion = questions.length - 1;
+let runningQuestion = 0;
+let count = 0;
+const questionTime = 10;
+const gaugeWidth = 150;
+const gaugeUnit = gaugeWidth / questionTime;
+let TIMER;
+let score = 0;
+function renderQuestion(){
+  let q=questions[runningQuestion];
+   question.innerHTML = "<p>"+ q.question +"</p>";
+  choiceA.innerHTML=q.choiceA;
+  choiceB.innerHTML=q.choiceB;
+  choiceC.innerHTML=q.choiceC;
+  qImg.innerHTML="<img src="+q.imgSrc+" style='border-radius:20%'>";
+
+
+}
+start.addEventListener("click",startQuiz);
+function startQuiz(){
+  start.style.display="none";
+  renderQuestion();
+  quiz.style.display="block";
+  renderProgress();
+    renderCounter();
+    TIMER=setInterval(renderCounter,1000);
+
+}
+function renderProgress(){
+  for(let qIndex = 0; qIndex <= lastQuestion; qIndex++){
+        progress.innerHTML += "<div class='prog' id="+ qIndex +"></div>";
+    }
+}
+function renderCounter(){
+  if(count<=questionTime){
+    counter.innerHTML=count;
+
+    timeGauge.style.width=count*gaugeUnit+'px';
+      count++;}
+      else{
+              count = 0;
+              // change progress color to red
+              answerIsWrong();
+              if(runningQuestion < lastQuestion){
+                  runningQuestion++;
+                  renderQuestion();
+              }else{
+                  // end the quiz and show the score
+                  clearInterval(TIMER);
+                  scoreRender();
+              }
+          }
+      }
+      function checkAnswer(answer){
+        if( answer == questions[runningQuestion].correct){
+     // answer is correct
+     score++;
+     // change progress color to green
+     answerIsCorrect();
+ }else{
+     // answer is wrong
+     // change progress color to red
+     answerIsWrong();
+ }
+ count = 0;
+ if(runningQuestion < lastQuestion){
+     runningQuestion++;
+     renderQuestion();
+ }else{
+     // end the quiz and show the score
+     clearInterval(TIMER);
+     scoreRender();
+ }
+      }
+      function answerIsCorrect(){
+    document.getElementById(runningQuestion).style.backgroundColor = "#0f0";
+}
+
+// answer is Wrong
+function answerIsWrong(){
+    document.getElementById(runningQuestion).style.backgroundColor = "#f00";
+
+}
+
+// score render
+      function scoreRender(){
+    scoreDiv.style.display = "block";
+
+    // calculate the amount of question percent answered by the user
+    const scorePerCent = Math.round(100 * score/questions.length);
+
+    // choose the image based on the scorePerCent
+    let img = (scorePerCent >= 50) ? "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/baby-angel_1f47c.png" :
+
+              "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/imp_1f47f.png";
+    if(scorePerCent>=50){    document.getElementById("master").src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/man-elf_1f9dd-200d-2642-fe0f.png";
+superhero.play();}
+else{
+  document.getElementById("master").src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/supervillain_1f9b9.png";
+  witch.play();
+}
+    scoreDiv.innerHTML = "<img src="+ img +" style='height:50px;width:50px;'>";
+    scoreDiv.innerHTML += "<p>"+ scorePerCent +"%</p>";
+}
+       </script>
+  </body>
+</html>

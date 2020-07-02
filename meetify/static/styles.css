@@ -1,0 +1,75 @@
+body {
+  font-family: 'Lato';
+  background-color: #f8f3eb;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Catamaran';
+  font-weight: 800 !important;
+}
+
+
+.map-responsive{
+    overflow:hidden;
+    padding-bottom:30%;
+    position:relative;
+    height:0;
+}
+
+.map-responsive iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}
+h1,p{
+  color: #4d3e3e;
+}
+.card-title{
+  color: #142850;
+}
+.card-text{
+  color: #4d3e3e;
+  font-weight: 600;
+}
+
+.card{
+  background-color: #f1e3cb;
+   box-shadow: 0 0 8px 1px #888;
+}
+.bg-blue {
+  background-color: #1f4068 !important;
+}
+.card-deck{
+  margin:50px;;
+}
+.navbar-custom {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color:#00005c;
+}
+.headings{
+  margin: 50px;
+}
+.Categorys{
+  margin: 50px;
+}
+.navbar-custom .navbar-brand {
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  font-weight: 700;
+}
+
+.navbar-custom .navbar-nav .nav-item .nav-link {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+}

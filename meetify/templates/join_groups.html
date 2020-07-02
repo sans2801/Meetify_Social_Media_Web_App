@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Join Groups</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../static/styles.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark  navbar-custom sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">Meetify</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/dashboard">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/create_room">Create Group</a>
+          </li>
+         <!-- <li class="nav-item">
+            <a class="nav-link" href="#"></a>
+          </li>-->
+          <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Features
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Join A Group</a>
+          <a class="dropdown-item" href="#">Make a Group</a>
+          <a class="dropdown-item" href="#">Dark mode</a>
+        </div>
+      </li>
+        <li>
+          <div class="md-form mt-0">
+
+                <form method="post">
+                <input class="form-control" type="text" placeholder="Search" aria-label="Search" name="grp_name">
+                
+                </form>
+
+            </div>
+        </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!--Google map-->
+  <div class="container-fluid">
+      <div class="map-responsive">
+     <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=Eiffel+Tower+Paris+France" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+  </div>
+  </div>
+ <!--Google Maps-->
+
+<!--------------Events
+
+  <h1 class="headings">Nearby Events</h1>
+  <div class=" card-deck">
+    <div class=" card">
+      <img src="image" class=" card-img-top" alt="image">
+      <div class=" card-body">
+        <h5 class=" card-title">Card title</h5>
+        <p class=" card-text">This is a longer  card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p>Online/Offline</p>
+        <button type="button" class="btn btn-outline-success">Attend</button>
+        <p class=" card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+    <div class=" card">
+      <img src="image" class=" card-img-top" alt="image">
+      <div class=" card-body">
+        <h5 class=" card-title">Card title</h5>
+        <p class=" card-text">This  card has supporting text below as a natural lead-in to additional content.</p>
+        <p>Online/Offline</p>
+        <button type="button" class="btn btn-outline-success">Attend</button>
+        <p class=" card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+    <div class=" card">
+      <img src="image" class=" card-img-top" alt="image">
+      <div class=" card-body">
+        <h5 class=" card-title">Card title</h5>
+        <p class=" card-text">This is a wider  card with supporting text below as a natural lead-in to additional content. This  card has even longer content than the first to show that equal height action.</p>
+        <p>Online/Offline</p>
+        <button type="button" class="btn btn-outline-success">Attend</button>
+        <p class=" card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+
+---------------------->
+{% if rooms %}  
+  <h1 class="headings">Search Results</h1>
+  <div class="row Categorys row-cols-1 row-cols-md-3">
+
+
+
+{% for room in rooms %}
+
+    <div class="col mb-4">
+      <div class=" card h-100">
+        <img src="{{ room['profile_pic'] }}" class=" card-img-top" alt="image" style="height:130px;width:100%;">
+        <div class=" card-body">
+          <a href="/grp_page/{{ room['_id'] }}"><h5 class=" card-title">{{ room['room name'] }}</h5></a>
+          <p class=" card-text">
+            Created By: {{ room['created by'] }}<br>
+        Group Interests:</br>
+
+        {% if room[tags]|length>=2 %}
+
+        <ul>
+        <li>{{ room['tags'][0] }}</li>
+        <li>{{ room['tags'][1] }}</li>
+        ...more
+      </ul>
+
+        {% else %}
+
+        <ul>
+        <li>{{ room['tags'][0] }}</li>
+        ...more
+      </ul>
+
+
+        {% endif %}
+        Status: {{ room['status'] }}
+
+        {% if room['status']=='Open' %}
+          <br>
+          <a href="/join_group/{{ room['_id'] }}">Join</a>
+        {% endif %}
+
+        <br>
+          </p>
+        </div>
+      </div>
+    </div>
+{% endfor %}
+
+
+{% else %}
+
+{% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
+<h4 class="headings">{{ message }}</h4>
+{% endfor %} {% endif %} {% endwith %}
+
+{% endif %}
+
+
+  </div>
+
+  <h1 class="headings">Recommended Groups</h1>
+  <p class="headings">Browse groups by topics you're interested in.</p>
+  <div class="row Categorys row-cols-1 row-cols-md-3">
+
+{% if recommended_rooms %}
+
+{% for room in recommended_rooms %}
+
+  	<div class="col mb-4">
+      <div class=" card h-100">
+        <img src="{{ room['profile_pic'] }}" class=" card-img-top" alt="image" style="height:130px;width:100%;">
+        <div class=" card-body">
+          <a href="/grp_page/{{room['_id']}}"><h5 class=" card-title">{{ room['room name'] }}</h5></a>
+
+          <p class=" card-text">
+          	Created By: {{ room['created by'] }}<br>
+				
+            Group Interests:</br>
+
+        {% if room[tags]|length>=2 %}
+
+        <ul>
+        <li>{{ room['tags'][0] }}</li>
+        <li>{{ room['tags'][1] }}</li>
+        ...more
+      </ul>
+
+        {% else %}
+
+        <ul>
+        <li>{{ room['tags'][0] }}</li>
+        ...more
+      </ul>
+
+
+        {% endif %}
+
+				Status: {{ room['status'] }}
+				{% if room['status']=='Open' %}
+					<br>
+					<a href="/join_group/{{ room['_id'] }}">Join</a>
+
+
+				{% endif %}
+				<br>
+          </p>
+        </div>
+      </div>
+    </div>
+
+{% endfor %}
+
+{% endif %}
+
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-5 bg-blue">
+    <div class="container">
+      <p class="m-0 text-center text-white small">Copyright &copy; Fantastic Four</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

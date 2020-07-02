@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500&family=Poppins&display=swap" rel="stylesheet">
+    <style>
+      .header{
+        background-color:cerulean;
+
+        height:90px;
+      }
+      body{
+        background-color:#f5f5f5;
+      }
+      p{
+font-family: 'Poppins', sans-serif;
+        color:white; 
+        font-size:3vw ;
+      }
+      .add{margin-right:1%;margin-bottom:5px;margin-top:5px;}
+      h1{color:white;margin:3% 1%;font-size:4vw;}
+
+
+
+  .aryan{width:90%;height:0px;border-style:none;border-top-style: solid;border-color:white;border-width:2px;}
+  .part{margin-left:10%;background-color:;margin-right:10%;margin-top: 0px;margin-bottom: 0px;}
+.maha{background-color:#52B2BF;width:70%;margin:20px auto;border:10px;}
+
+
+  .admin-controls{
+
+    padding: 10px;
+  }
+
+  .container{
+    display: flex;
+    justify-content: center;
+  }
+
+      </style>
+    <title>{{ room['room name'] }}</title>
+  </head>
+  <body>
+  <div class="header">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color:#151E3D;">
+<a class="navbar-brand" href="#" style="font-family: 'Pacifico', cursive;color:#151E3D">
+
+ 
+  <h1 style="display:inline;color:#0492C2;font-family: 'Poppins', sans-serif;">Group Info</h1></a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!--<ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link "  href="#"><img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/google/241/pen_1f58a.png" style="height:40px;width:40px;"><p style="display:inline;font-size:6px !important ;">Change Name<br><span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+           <a class="nav-link "  href="#"><img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/facebook/65/heavy-plus-sign_2795.png" style="height:40px;width:40px;"><p style="display:inline;font-size:6px !important ;">Add a Meetifier<br></a>
+        </li>
+        <li class="nav-item">
+           <a class="nav-link "  href="#"><img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/facebook/65/back-with-leftwards-arrow-above_1f519.png" style="height:40px;width:40px;"><p style="display:inline;font-size:6px !important ;">Go Back<br></a>
+        </li>-->
+
+
+      </ul>
+
+    </div>
+  </nav>
+    <!-- Image and text -->
+
+
+
+
+
+    </div>
+    <br>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    <div class="alert alert-{{ category }} flash">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+    {% endwith %}
+
+
+    <div class="profilepic">
+
+      <div class="container">
+      <img class="grp_pic" src="{{ room['profile_pic'] }}" style="width:25%;height:25%;margin:auto;border-radius:50%;">
+      </div>
+      <br>
+      
+      <h1 style="color:#0492C2;margin-left:5%;">{{ room['room name'] }}</h1>
+      <p style="color:#0492C2;margin-left:5%;">Created by {{ room['created by'] }}</p>
+    </div>
+      <hr>
+      <!--<div class="description"><br>
+        <p style="color:#0492C2;margin-left:5%;">Description</p>
+        <p style="color:#0492C2;margin-left:5%;">Jai Hind!Jai Hind!Jai Hind!</p>--->
+    <!-- Optional JavaScript -->
+          <br>
+              <div class="maha">
+            <p style="color:white;margin-left:5%;">Group Participants</p>
+          <br>
+
+          	<hr class="aryan">
+            <br>
+            <div class="part">
+            	{% for member in members %}
+					
+					<img src="{{ member['image_file'] }}" style="height:80px;width:80px;border-radius:50%">
+
+                  <p style="color:white;margin-left:5%;display:inline;">{{member['_id']['username']}}</p>
+
+                </br></br>
+
+				{% endfor %}
+
+          </div>
+
+  {% if isAdmin %}
+<hr>
+  <div class="admin-controls">
+
+    <h2>Admin Controls</h2>
+
+
+
+  <form method="post" name="Add">
+  <label>Add Participant</label>
+  <div class="form-group">
+  <input type="text" name="add_member" placeholder="Participant..." class="form-control" required>
+  </div>
+  <button type="submit">Add</button>
+  </form>
+
+<br>
+
+  <form method="post" name="Remove">
+  <label>Remove Participant</label>
+  <div class="form-group">
+  <input class="form-control" type="text" name="remove_member" placeholder="Participant..." required>
+  </div>
+  <button type="submit">Remove</button>
+  </form>
+
+  <br>
+
+  <form method="post">
+    <label>Change Name</label>
+    <div class="form-group">
+    <input type="text" name="name" class="form-control" placeholder="New Group Name" required>
+    </div>
+    <button type="submit">Change</button>
+  </form>
+
+  <form method="post" enctype="multipart/form-data">
+    <br>
+    <label>Chance Profile Pic</label>
+    <input type="file" name="pic" accept=".jpg,.jpeg,.png"/  required>
+    <br>
+    <button type="submit">Change</button>
+  </form>
+  </div>
+  {% endif %}
+
+
+<!--------<button type="button" class="btn btn-primary btn-lg btn-block" style="background-color:#52B2BF;color:white;font-family: 'Poppins', sans-serif;"><img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/samsung/220/angry-face_1f620.png" style="height:50px;width:50px;">Report Group</button>------------->
+{% if isMember %}
+<button onclick="document.location='/grp_page/leave/{{ current_user.username }}/{{ room._id }}'" type="button" class="btn btn-primary btn-lg btn-block" style="background-color:#52B2BF;color:white;font-family: 'Poppins', sans-serif;"><img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/samsung/220/worried-face_1f61f.png" style="height:50px;width:50px;" >Exit Group</button>
+
+{% elif room['status']=='Open' %}
+
+<button onclick="document.location='/grp_page/leave/{{ current_user.username }}/{{ room._id }}'" type="button" class="btn btn-primary btn-lg btn-block" style="background-color:#52B2BF;color:white;font-family: 'Poppins', sans-serif;">Join Group </button>
+
+{% endif %}
+
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  </body>
+</html>

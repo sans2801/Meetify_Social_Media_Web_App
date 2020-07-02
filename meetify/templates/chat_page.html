@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">         <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../static/chat.css">
+    </head>
+    <body>
+        <div class="layout">
+            <nav class="navigation" id="navigation">
+                <div class="nav-group" id="nav-group">
+                    <ul>
+                        <li>
+                            <a class="active" data-navigation-target="chats" href="#" data-toggle="tooltip" title="" data-placement="right" data-original-title="Chats">
+                                <span class="badge badge-warning"></span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dark-light-switcher" data-toggle="tooltip" title="" data-placement="right" data-original-title="Dark mode">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                            </a>
+                        </li>
+                        <li data-toggle="tooltip" title="" data-placement="right" data-original-title="User menu">
+                            <a href="./login.html" data-toggle="dropdown">
+                                <figure class="avatar">
+                                    <img src="./card-profile1-square.jpg" class="rounded-circle" alt="image">
+                                </figure>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a href="#" class="dropdown-item" data-toggle="modal" data-target="#editProfileModal">Edit
+                                profile</a>
+                                <a href="#" class="dropdown-item" data-navigation-target="contact-information">Profile</a>
+                                <a href="#" class="dropdown-item" data-toggle="modal" data-target="#settingModal">Settings</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="login.html" class="dropdown-item text-danger">Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="content">
+                <div class="sidebar-group" id="groups-info">
+                    <div class="sidebar active" id="sidebar-group-chats">
+                        <header>
+                            <span class="pull-left" style="font-size: 23px;">Chats</span>
+                            <ul class="list-inline">
+                                <li class="list-inline-item d-xl-none d-inline" onclick="openmenu()">
+                                    <a href="#" class="btn btn-outline-light mobile-navigation-button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item" data-toggle="tooltip" title="" data-original-title="New group">
+                                    <a class="btn btn-outline-light" href="#" data-toggle="modal" data-target="#newGroup">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="btn btn-outline-light" data-toggle="tooltip" title="" href="#" data-navigation-target="friends" data-original-title="New chat">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                    </a>
+                                </li>
+                                <!---<li class="list-inline-item d-xl-none d-inline">
+                                    <a href="#" class="btn btn-outline-light text-danger sidebar-close">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                    </a>
+                                </li>--->
+                            </ul>
+                        </header>
+
+                        <form>
+                            <input type="text" class="form-control" placeholder="Search chats">
+                        </form>
+
+                        <div class="sidebar-body" style="overflow: hidden; outline: currentcolor none medium;" tabindex="2">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item" id="groups" onclick="openchat()">
+                                    <div>
+                                        <figure class="avatar">
+                                            <img src="./card-profile1-square.jpg" class="rounded-circle" alt="image">
+                                        </figure>
+                                    </div>
+                                    <div class="users-list-body">
+                                        <div>
+                                            <h5>Friend</h5>
+                                            <p>Good luck with </p>
+                                        </div>
+                                        <div class="users-list-action">
+                                            <small class="text-muted">11:05 AM</small>
+                                            <div class="action-toggle">
+                                                <div class="dropdown">
+                                                    <a data-toggle="dropdown" href="#">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a href="#" class="dropdown-item">Open</a>
+                                                        <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                                        <a href="#" class="dropdown-item">Add to archive</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="#" class="dropdown-item text-danger">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item open-chat" id="groups" onclick="openchat()">
+                                    <div>
+                                        <figure class="avatar">
+                                            <img src="./card-profile1-square.jpg" class="rounded-circle" alt="image">
+                                        </figure>
+                                    </div>
+                                    <div class="users-list-body">
+                                        <div>
+                                            <h5>user</h5>
+                                            <p>I ja; ;jd ;d;s djdf </p>
+                                        </div>
+                                        <div class="users-list-action">
+                                            <small class="text-muted">03:41 PM</small>
+                                            <div class="action-toggle">
+                                                <div class="dropdown">
+                                                    <a data-toggle="dropdown" href="#">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a href="#" class="dropdown-item">Open</a>
+                                                        <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                                        <a href="#" class="dropdown-item">Add to archive</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="#" class="dropdown-item text-danger">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item" id="groups" onclick="openchat()">
+                                    <figure class="avatar">
+                                        <img src="./card-profile1-square.jpg" class="rounded-circle" alt="image">
+                                    </figure>
+                                    <div class="users-list-body">
+                                        <div>
+                                            <h5> Friend</h5>
+                                            <p><strong>dfk;j  dskj </strong>Hello!!!</p>
+                                        </div>
+                                        <div class="users-list-action">
+                                            <small class="text-muted">Yesterday</small>
+                                            <div class="action-toggle">
+                                                <div class="dropdown">
+                                                    <a data-toggle="dropdown" href="#">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a href="#" class="dropdown-item">Open</a>
+                                                        <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                                        <a href="#" class="dropdown-item">Add to archive</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="#" class="dropdown-item text-danger">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item" id="groups" onclick="openchat()">
+                                    <div>
+                                        <figure class="avatar avatar-state-warning">
+                                            <img src="./card-profile1-square.jpg" class="rounded-circle" alt="image">
+                                        </figure>
+                                    </div>
+                                    <div class="users-list-body">
+                                        <div>
+                                            <h5>James</h5>
+                                            <p>
+                                                Hii
+                                            </p>
+                                        </div>
+                                        <div class="users-list-action">
+                                            <small class="text-muted">03:41 PM</small>
+                                            <div class="action-toggle">
+                                                <div class="dropdown">
+                                                    <a data-toggle="dropdown" href="#">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a href="#" class="dropdown-item">Open</a>
+                                                        <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                                        <a href="#" class="dropdown-item">Add to archive</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="#" class="dropdown-item text-danger">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item" id="groups" onclick="openchat()">
+                                    <div>
+                                        <figure class="avatar">
+                                            <img src="./card-profile1-square.jpg" class="rounded-circle" alt="image">
+                                        </figure>
+                                    </div>
+                                    <div class="users-list-body">
+                                        <div>
+                                            <h5>Friend 1</h5>
+                                            <p>Have you prepared?</p>
+                                        </div>
+                                        <div class="users-list-action">
+                                            <small class="text-muted">Yesterday</small>
+                                            <div class="action-toggle">
+                                                <div class="dropdown">
+                                                    <a data-toggle="dropdown" href="#">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a href="#" class="dropdown-item">Open</a>
+                                                        <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                                        <a href="#" class="dropdown-item">Add to archive</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="#" class="dropdown-item text-danger">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item" id="groups" onclick="openchat()">
+                                    <div>
+                                        <figure class="avatar">
+                                            <img src="./card-profile1-square.jpg" class="rounded-circle" alt="image">
+                                        </figure>
+                                    </div>
+                                    <div class="users-list-body">
+                                        <div>
+                                            <h5>Friend</h5>
+                                            <p>Where are you?</p>
+                                        </div>
+                                        <div class="users-list-action">
+                                            <small class="text-muted">03:41 PM</small>
+                                            <div class="action-toggle">
+                                                <div class="dropdown">
+                                                    <a data-toggle="dropdown" href="#">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a href="#" class="dropdown-item">Open</a>
+                                                        <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                                        <a href="#" class="dropdown-item">Add to archive</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="#" class="dropdown-item text-danger">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item" id="groups" onclick="openchat()">
+                                    <div>
+                                        <figure class="avatar">
+                                            <img src="./card-profile1-square.jpg" class="rounded-circle" alt="image"> 
+                                        </figure>
+                                    </div>
+                                    <div class="users-list-body">
+                                        <div>
+                                            <h5>Friend</h5>
+                                            <p>skdjl ldj jl kjlfdk </p>
+                                        </div>
+                                        <div class="users-list-action">
+                                            <small class="text-muted">03:41 PM</small>
+                                            <div class="action-toggle">
+                                                <div class="dropdown">
+                                                    <a data-toggle="dropdown" href="#">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a href="#" class="dropdown-item">Open</a>
+                                                        <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                                        <a href="#" class="dropdown-item">Add to archive</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="#" class="dropdown-item text-danger">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item" id="groups" onclick="openchat()">
+                                    <div>
+                                        <figure class="avatar">
+                                            <img src="./card-profile1-square.jpg" class="rounded-circle" alt="image">
+                                        </figure>
+                                    </div>
+                                    <div class="users-list-body">
+                                        <div>
+                                            <h5>user</h5>
+                                            <p>Reports.</p>
+                                        </div>
+                                        <div class="users-list-action">
+                                            <small class="text-muted">03:41 PM</small>
+                                            <div class="action-toggle">
+                                                <div class="dropdown">
+                                                    <a data-toggle="dropdown" href="#">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a href="#" class="dropdown-item">Open</a>
+                                                        <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                                        <a href="#" class="dropdown-item">Add to archive</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="#" class="dropdown-item text-danger">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item" id="groups" onclick="openchat()">
+                                    <div>
+                                        <figure class="avatar">
+                                            <img src="./card-profile1-square.jpg" class="rounded-circle" alt="image">
+                                        </figure>
+                                    </div>
+                                    <div class="users-list-body">
+                                        <div>
+                                            <h5>Friend</h5>
+                                            <p>please.</p>
+                                        </div>
+                                        <div class="users-list-action">
+                                            <small class="text-muted">03:41 PM</small>
+                                            <div class="action-toggle">
+                                                <div class="dropdown">
+                                                    <a data-toggle="dropdown" href="#">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a href="#" class="dropdown-item">Open</a>
+                                                        <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                                        <a href="#" class="dropdown-item">Add to archive</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="#" class="dropdown-item text-danger">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item" id="groups" onclick="openchat()">
+                                    <div>
+                                        <figure class="avatar">
+                                            <img src="./card-profile1-square.jpg" class="rounded-circle" alt="image">
+                                        </figure>
+                                    </div>
+                                    <div class="users-list-body">
+                                        <div>
+                                            <h5>Friend 1</h5>
+                                            <p>Hii</p>
+                                        </div>
+                                        <div class="users-list-action">
+                                            <small class="text-muted">03:41 PM</small>
+                                            <div class="action-toggle">
+                                                <div class="dropdown">
+                                                    <a data-toggle="dropdown" href="#">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a href="#" class="dropdown-item">Open</a>
+                                                        <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                                        <a href="#" class="dropdown-item">Add to archive</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="#" class="dropdown-item text-danger">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat" id="chat">
+                    <div class="chat-header">
+                        <div class="chat-header-user">
+                            <figure class="avatar mr-2">
+                                <img src="{{ room['profile_pic'] }}" class="rounded-circle pull-left" alt="image" style="border-radius: 50%; height: 2.3rem; width: 2.3rem; margin-right: 10px;">
+                            </figure>
+                            <div>
+                                <h5 class="mb-0"><a href="/grp_page/{{ room['_id'] }}">{{ room['room name'] }}</a></h5>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="chatbox ">
+                        <div class="d-flex messages" id="display-message">	
+
+                        	{% for message in messages %}
+                        	{% if message['sender']==username %}
+                        	<div class="user ml-auto">
+                        	<div class="chat-message-box">
+                                    <div class="profile-user ml-auto">
+                                        <figure class="profile-pic">
+                                            <img class="mr-3" src="{{ message['image'] }}" alt="image" width="50px" height="50px" style="border-radius: 50%;">
+                                        </figure>
+                                        <div class="profile-info">
+                                            <h5 class="mt-0 mb-0">{{ message['sender'] }}</h5>
+                                            <p>{{ message['created_at'] }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="chat-message">
+                                        <p>{{ message['text'] }}</p>
+                                    </div>
+                               </div>
+                           </div>
+
+                        	{% else %}
+                        	<div class="friend mr-auto">
+                        		<div class="chat-message-box">
+                                    <div class="profile-user ml-auto">
+                                        <figure class="profile-pic">
+                                            <img class="mr-3" src="{{message['image']}}" alt="image" width="50px" height="50px" style="border-radius: 50%;">
+                                        </figure>
+                                        <div class="profile-info">
+                                            <h5 class="mt-0 mb-0">{{ message['sender'] }}</h5>
+                                            <p>{{ message['created_at'] }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="chat-message">
+                                        <p>{{ message['text'] }}</p>
+                                    </div>
+                               </div>
+                        	</div>
+                        	{% endif %}
+
+							{% endfor %}
+
+                        </div>
+                    </div>
+
+
+                    <div class="type-section">
+                        <form class="form mb-14">
+                            <div class="">
+                                <button class="btn btn-light mr-3" data-toggle="tooltip" title="" type="button" data-original-title="Emoji" >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-smile"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+                                </button>
+                            </div>
+                            <input type="text" id="user_message" class="form-control" placeholder="Type a message">
+                            <div class="form-buttons">
+                                <button class="btn btn-primary submit" type="button" id="send_message">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="sidebar-group mobile-open">
+            		<div id="contact-information" class="sidebar" style="overflow-y: scroll;">
+            			<header>
+            				<span>Profile</span>
+                    		<ul class="list-inline">
+                        		<li class="list-inline-item mr-auto">
+                            		<button id="profile-close" onclick="profileclose()" class="btn btn-outline-light text-danger sidebar-close">
+                                	    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                    </button>
+    	    	                </li>
+                		    </ul>
+            			</header>
+            			<div class="pl-4 pr-4">
+            				<div class="text-center">
+                            	<figure class="avatar avatar-xl mb-4">
+                                	<img src="./card-profile1-square.jpg" class="rounded-circle" alt="image">
+                            	</figure>
+	                        </div>
+	                        <div class="user-info mb-3 pb-4">
+	                        	<span class="group pull-left">
+	                        		<h4 class="mb-0">Friend</h4>
+	                        		<small>Created on 24/06/2020</small>
+	                        	</span>
+	                        	<ul class="list-inline">
+                        			<li class="list-inline-item mr-auto">
+                            			<a href="#" class="btn btn-outline-light text-danger sidebar-close">
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="#919191" d="M3.95 16.7v3.4h3.4l9.8-9.9-3.4-3.4-9.8 9.9zm15.8-9.1c.4-.4.4-.9 0-1.3l-2.1-2.1c-.4-.4-.9-.4-1.3 0l-1.6 1.6 3.4 3.4 1.6-1.6z"></path></svg>
+		    	                        </a>
+    		    	                </li>
+        	        		    </ul>
+	                        </div>
+	                        <div class="description mb-7">
+	                        	<div class="">
+	                        		<h5 style="color: #009688;">Description</h5>
+	                        	</div>
+	                        	<div class="description-info mb-7">
+	                        		<span class="pull-left">Meetify...</span>
+	                        		<ul class="list-inline">
+                        				<li class="list-inline-item mr-auto">
+	                            			<a href="#" class="btn btn-outline-light text-danger sidebar-close">
+    	                        	    		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="#919191" d="M3.95 16.7v3.4h3.4l9.8-9.9-3.4-3.4-9.8 9.9zm15.8-9.1c.4-.4.4-.9 0-1.3l-2.1-2.1c-.4-.4-.9-.4-1.3 0l-1.6 1.6 3.4 3.4 1.6-1.6z"></path></svg>
+	    		            	            </a>
+    	    		    	            </li>
+                				    </ul>
+	                        	</div>
+	                        </div>
+	                        <div class="participants">
+	                        	<div class="number-of-participants mb-2">
+	                        		<span>2 Participants</span>
+	                        		<ul class="list-inline">
+                        				<li class="list-inline-item mr-auto">
+                            				<a href="#" class="btn btn-outline-light text-danger sidebar-close">
+												<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="black" d="M15.9 14.3H15l-.3-.3c1-1.1 1.6-2.7 1.6-4.3 0-3.7-3-6.7-6.7-6.7S3 6 3 9.7s3 6.7 6.7 6.7c1.6 0 3.2-.6 4.3-1.6l.3.3v.8l5.1 5.1 1.5-1.5-5-5.2zm-6.2 0c-2.6 0-4.6-2.1-4.6-4.6s2.1-4.6 4.6-4.6 4.6 2.1 4.6 4.6-2 4.6-4.6 4.6z"></path></svg>
+			    	                        </a>
+    			    	                </li>
+        		        		    </ul>
+	                        	</div>
+	                        	<!----gggggggggggggggggggggggggggh------->
+	                        	<ul class="list-group list-group-flush">
+                                	<li class="list-group-item">
+                                    	<div>
+                                        	<figure class="avatar">
+	                                            <img src="./card-profile1-square.jpg" class="rounded-circle" alt="image">
+    	                                    </figure>
+        	                            </div>
+            	                        <div class="users-list-body">
+                	                        <div>
+                    	                        <h5>Friend</h5>
+                        	                    
+                            	            </div>
+                                	        <div class="users-list-action">
+                                        	    <div class="action-toggle">
+                                            	    <div class="dropdown">
+                                                	    <a data-toggle="dropdown" href="#">
+                                                    	    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+	                                                    </a>
+    	                                                <div class="dropdown-menu dropdown-menu-right">
+        	                                                <a href="#" class="dropdown-item">Open</a>
+            	                                            <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+	                                                        <a href="#" class="dropdown-item">Add to archive</a>
+	                                                        <div class="dropdown-divider"></div>
+    	                                                    <a href="#" class="dropdown-item text-danger">Delete</a>
+        	                                            </div>
+            	                                    </div>
+                	                            </div>
+                    	                    </div>
+                        	            </div>
+                                	</li>
+                                	<li class="list-group-item">
+	                                    <div>
+    	                                    <figure class="avatar">
+        	                                    <img src="./card-profile1-square.jpg" class="rounded-circle" alt="image">
+            	                            </figure>
+                	                    </div>
+                    	                <div class="users-list-body">
+                        	                <div>
+                            	                <h5>user</h5>
+                                    	    </div>
+                                        	<div class="users-list-action">
+    	                                        <div class="action-toggle">
+        	                                        <div class="dropdown">
+            	                                        <a  href="#">
+                	                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                    	                                </a>
+	                                                </div>
+    	                                        </div>
+        	                                </div>
+            	                        </div>
+                                	</li>
+                            	</ul>
+	                        </div>
+	                    </div>
+            		</div>
+            	</div>
+            </div>
+        </div>
+
+        
+<!--------------------------------------------------------------------------->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+         <script src="chat.js"></script> 
+         <script>
+             function openchat(){
+                
+                if ($(window).width() < 1120) {
+                    var y = document.getElementById("groups-info");
+                    y.style.display = "none";
+                    var x= document.getElementById("chat");
+                    x.style.display = "flex";
+                }
+                else{
+                    var p = document.getElementsByClassName('open-chat');
+                    p.classList.add('open-chat');
+                    document.querySelector('#groups').addEventListener("click",function(){
+                        var k = document.getElementById("groups");
+                        p.classList.add('open-chat');
+                    })
+                    $("li").click(function() {
+                        $(this).addClass("open-chat");
+                    });
+                    var x= document.getElementById("chat");
+                    x.style.display = "flexbox";
+                }
+            }
+
+
+            openchat();
+
+            function profileopen(){
+                var x = document.getElementById("contact-information");
+                x.style.display = "block";
+                var viewportWidth = $(window).width();
+                if (viewportWidth < 1120){
+                    var y = document.getElementById("chat");
+                    y.style.display = "none";
+                }
+            }
+            function profileclose(){
+                var x= document.getElementById("contact-information");
+                x.style.display = "none";
+                if($(window).width() < 1120){
+                    var y = document.getElementById("chat");
+                    y.style.display = "flex";
+                }
+            }
+            function openmenu(){
+                var x = document.getElementById("navigation");
+                if(x.style.display === "none")
+                {
+                    x.style.display = "block";
+                }
+                else
+                {
+                    x.style.display = "none";
+                }   
+            }
+            
+
+         </script>
+
+    </body>
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+
+
+    <script id="some_id" type="text/javascript">
+
+    var socket=io();
+
+    //leave room func
+    function leaveRoom(room){
+        socket.emit('leave',{'username':username, 'room':room})
+    }
+
+    //join room func
+    function joinRoom(room){
+        socket.emit('join',{'username':username, 'room':room})
+    }
+    
+    let username=`{{ username }}`;
+    let room_id=`{{ room['_id'] }}`;
+
+    console.log(room_id);
+    let room;
+
+    let newRoom=room_id;
+            if(newRoom==room){
+                msg=`you are already in ${room}.`
+                alert(msg);
+            }
+            else{
+                leaveRoom(room);
+                joinRoom(newRoom);
+                room=newRoom;
+            }
+
+</script>
+
+
+
+
+
+
+
+
+<script type="text/javascript" charset="utf-8">
+
+    document.addEventListener('DOMContentLoaded',()=>{
+    
+
+    socket.on('message',data=>{
+
+if(data['username']==`{{ username }}`)
+{
+
+    const user=document.createElement('div');   
+    user.className="user ml-auto";
+    user.innerHTML=`<div class="chat-message-box">
+                                    <div class="profile-user ml-auto">
+                                        <figure class="profile-pic">
+                                            <img class="mr-3" src="${data['pic']}" alt="image" width="50px" height="50px" style="border-radius: 50%;">
+                                        </figure>
+                                        <div class="profile-info">
+                                            <h5 class="mt-0 mb-0">${data['username']}</h5>
+                                            <p>${data['time_stamp']}</p>
+                                        </div>
+                                    </div>
+                                    <div class="chat-message">
+                                        <p>${data['msg']}</p>
+                                    </div>
+                               </div>`;
+    document.querySelector('#display-message').append(user);
+
+}
+
+else{
+    const user=document.createElement('div');
+    user.className="friend mr-auto";
+    user.innerHTML=`<div class="chat-message-box">
+                                    <div class="profile-user ml-auto">
+                                        <figure class="profile-pic">
+                                            <img class="mr-3" src="${data['pic']}" alt="image" width="50px" height="50px" style="border-radius: 50%;">
+                                        </figure>
+                                        <div class="profile-info">
+                                            <h5 class="mt-0 mb-0">${data['username']}</h5>
+                                            <p>${data['time_stamp']}</p>
+                                        </div>
+                                    </div>
+                                    <div class="chat-message">
+                                        <p>${data['msg']}</p>
+                                    </div>
+                               </div>`;
+    document.querySelector('#display-message').append(user);
+
+}
+
+    });
+
+    socket.on('joining_event',data=>{
+
+        const p=document.createElement('p');
+        const span_username=document.createElement('span');
+        p.innerHTML=data['msg'];
+        document.querySelector('#display-message').append(p);
+
+    });
+
+
+    socket.on('leaving_event',data=>{
+        const p=document.createElement('p');
+        p.innerHTML=data['msg'];
+        document.querySelector('#display-message').append(p);
+
+    });
+
+    //Sends message on clicking
+
+    document.querySelector('#send_message').onclick=()=>{
+
+        if(document.querySelector('#user_message').value=='')
+        {
+            alert('Please type a message');
+        }
+
+        else
+        {
+        socket.send({'msg':document.querySelector('#user_message').value,'username':username,'room':room});
+        document.querySelector('#user_message').value='';
+    }
+    }
+
+
+    
+
+})
+
+
+
+</script>
+
+</html>
