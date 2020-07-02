@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="https://fonts.googleapis.com/css2?family=Holtwood+One+SC&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+     <style>
+       p{
+         font-family: 'Poppins', sans-serif;
+         font-size:150%;
+         color:#0492C2;
+         text-align:center
+       }
+       .head{text-align:center;color:#0492C2}
+       h1{text-align:center;color:#0492C2;font-family: 'Holtwood One SC', serif;font-size:300%;}
+       body{
+         background-color:#EFFDF5
+       }
+       .minor{
+         border:8px solid #0492C2;
+         padding:1%
+
+       }
+       .main{
+         justify-content:center;
+         margin:40px auto;
+          width:70%
+       }
+       html,body {
+           width: 100%;
+           height: 100%;
+           margin: 0px;
+           padding: 0px;
+           overflow-x: hidden;
+       }
+   img{
+     height:200px;
+     width:200px;
+     border-radius:50%;
+     border:5px solid #0492C2;
+   }
+   @media(max-width:480px){
+     p{
+       font-size:80%;
+     }
+     h1{
+       font-size:200%;
+       color:#0492C2
+     }
+     img{
+       height:100px;
+       width:100px
+     }
+     button{
+       font-size:80%;
+     }
+   }
+   .minor{background-color:#f5f5f5}
+   button{
+      font-family: 'Poppins', sans-serif;
+      font-size:100%
+   }
+
+       </style>
+    <title>Meet and Enlighten</title>
+  </head>
+  <body>
+  <h1  >Meet & Enlighten</h1>
+      <div style="text-align:center">
+  <p  style="text-align:center">Here you can find some quotes by famous personalities and<br> share them with your friends as well !!!</p>
+  <button type="button" class="btn btn-info btn-lg" style="     font-family: 'Poppins', sans-serif;" onClick="newQuote()">Next<img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/thought-balloon_1f4ad.png" style="border:none;height:30px;width:30px"></button>
+</div>
+    <div class="main">
+      <div class="minor">
+
+<div style="text-align:center"><br>
+            <img src="https://5.imimg.com/data5/ID/CM/MY-12428473/fiber-buddha-head-statue-500x500.jpg" class="imggreat img-fluid">
+  <br><br><p style="display:inline-block;text-align:center" class="mainthought">Overthinking is the biggest cause of unhappiness<br>-Buddha</p>
+</div>
+
+
+
+      </div>
+
+
+      </div>
+
+
+
+<div style="text-align:center">
+
+<button type="button" class="btn btn-info btn-lg" style="     font-family: 'Poppins', sans-serif;" onClick="">Share<img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/dove-of-peace_1f54a.png" style="border:none;height:30px;width:30px"></button>
+</div><br><br>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script>
+  var quotes=[
+  {
+    quote:"The greatest glory in living lies not in never falling, but in rising every time we fall.<br>-Nelson Mandela",
+    img:"https://www.biography.com/.image/t_share/MTY2MzU2NjgxMDUwMDM5OTk5/_photo-by-per-anders-petterssongetty-images.jpg"
+  },
+  {
+    quote:"The way to get started is to quit talking and begin doing.<br>-Walt Disney" ,
+    img:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Walt_Disney_and_his_cartoon_creation_%22Mickey_Mouse%22_-_National_Board_of_Review_Magazine.jpg/170px-Walt_Disney_and_his_cartoon_creation_%22Mickey_Mouse%22_-_National_Board_of_Review_Magazine.jpg",
+  },
+  {
+    quote:"Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma – which is living with the results of other people's thinking.<br>-Steve Jobs" ,
+    img:"https://upload.wikimedia.org/wikipedia/commons/d/dc/Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg"
+  },
+  {
+    quote:"If you look at what you have in life, you'll always have more. If you look at what you don't have in life, you'll never have enough.<br>-OprahWinfrey",
+    img:"https://i.guim.co.uk/img/media/4b40a096b7ad7e229932d5255fbfb96dda78f419/0_192_3173_1904/master/3173.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=e9e93fbfb6c71e9b9ada16482a5e9363"
+  },
+  {
+    quote:"Whoever is happy will make others happy too.<br>-Anne Frank" ,
+    img:"https://www.nepr.net/sites/wfcr/files/styles/x_large/public/201907/31957984331_703c595c9b_o.jpg"
+  },
+  {
+    quote: "Life is made of ever so many partings welded together.<br>-Charles Dickens" ,
+    img:"https://i.guim.co.uk/img/media/e3672140bbd9b48316e6251132c641c153a09a9f/0_337_2400_1440/master/2400.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=e07e155c800ee65b3ae3a1ffd1ccfb84"
+  },
+  {
+    quote:"Whatever the mind of man can conceive and believe, it can achieve.<br>-Napolean Hill" ,
+    img:"https://upload.wikimedia.org/wikipedia/commons/7/75/Napoleon_Hill_headshot.jpg"
+  },
+  {
+    quote:"All that we are is the result of what we have thought.<br>-Buddha",
+    img:"https://www.biography.com/.image/t_share/MTY2Nzk2NDk1NjMzMjYyNTY5/gaudara-buddha-approx-3rd-century-bc-photo-by-eliot-elisofon_the-life-picture-collection-via-getty-images_getty-images.jpg"
+  },
+  {
+    quote:"Nonviolence is a weapon of the strong.<br>-Mahatma Gandhi",
+    img:"https://upload.wikimedia.org/wikipedia/commons/f/f3/Mohandas_K._Gandhi%2C_portrait.jpg"
+  },
+  {
+    quote:"Better to build a bridge than a wall.<br>-Elton John",
+    img:"https://upload.wikimedia.org/wikipedia/commons/8/80/Elton_John_2011_Shankbone_2_%28cropped%29.JPG"
+  },
+  {
+    quote:"If I’d observed all the rules, I’d never got anywhere.<br>-Marilyn Monroe",
+    img:"https://www.onthisday.com/images/people/marilyn-monroe-medium.jpg"
+  },
+  {
+    quote:"When you are happy you can forgive a great deal.<br>-Princess Diana",
+    img:"https://www.biography.com/.image/t_share/MTQzMzAxMjk3OTQ3Mjg5MTYw/diana_gettyimages-515185764jpg.jpg"
+  }
+  ]
+
+
+  function newQuote(){
+
+      var randomnumber=Math.floor(Math.random()*12);
+      document.querySelector('.mainthought').innerHTML=quotes[randomnumber].quote;
+        document.querySelector('.imggreat').src=quotes[randomnumber].img;
+  }
+  </script>
+  </body>
+</html>
